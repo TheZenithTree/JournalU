@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:GreenJournal.ViewModels"
+             x:Class="GreenJournal.Views.NewJournalPage"
+             Title= "Create a New Entry"
+             x:DataType="viewmodels:NewJournalPageVM">
+    <ContentPage.BindingContext>
+        <viewmodels:NewJournalPageVM/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <FlexLayout Direction="Column">
+            <!--Date-->
+            <Label Text="Date: "
+                   HorizontalTextAlignment="Start"
+                   FontSize="Medium"/>
+            <DatePicker x:Name="EntryDatePicker"
+                        Format="Short"
+                        Margin="0,10,0,10"
+                        HorizontalOptions="Center"
+                        Date=""/>
+            <Picker></Picker> <!--MoodTracker; Will need further implementation-->
+            <Picker></Picker> <!--LocationTracker; Will need further implementation-->
+            
+            <Editor 
+                    Placeholder="Enter text here"
+                    Text="{Binding JournalEntry, Mode=TwoWay}"
+                    Keyboard="Default"/>
+        </FlexLayout>
+
+    </ContentPage.Content>
+</ContentPage>
