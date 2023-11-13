@@ -31,13 +31,18 @@
     </Shell.Resources>
 
     <TabBar>
+        <!--x:Name="EntryPage" is used for the first page when you launch the app-->
+        <ShellContent x:Name="EntryPage"
+          Title="Home"
+          ContentTemplate="{DataTemplate local:HomeScreen}" />
+        
         <ShellContent Title="Habit Tracker"
                   ContentTemplate="{DataTemplate local:HabitHomePage}" />
 
         <ShellContent Title="Mood Tracker"
                   ContentTemplate="{DataTemplate local:MoodTrackerHomePage}" />
 
-        <ShellContent x:Name="EntryPage"
+        <ShellContent 
                   Title="New Entry"
                   ContentTemplate="{DataTemplate local:NewJournalPage}"/>
 
