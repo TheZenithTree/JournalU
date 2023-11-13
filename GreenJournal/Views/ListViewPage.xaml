@@ -4,7 +4,7 @@
              x:Class="GreenJournal.Views.ListViewPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Journals Galore <3"
+            <Label Text="Journals Galore heart"
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
         </StackLayout>
