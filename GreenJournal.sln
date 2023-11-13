@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenJournal.Android", "Gre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenJournal.iOS", "GreenJournal.iOS\GreenJournal.iOS.csproj", "{604E4C0B-1DD2-4CB1-B538-122F4A613B5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenJournal", "GreenJournal\GreenJournal.csproj", "{99B884C5-96A9-41E0-8C78-87C223A39E0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreenJournal", "GreenJournal\GreenJournal.csproj", "{99B884C5-96A9-41E0-8C78-87C223A39E0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
