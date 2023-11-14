@@ -33,27 +33,24 @@
     <TabBar>
         <!--x:Name="EntryPage" is used for the first page when you launch the app-->
         <ShellContent x:Name="EntryPage"
-          Title="Home"
-          ContentTemplate="{DataTemplate local:HomeScreen}" />
-        
+                      Title="Home"
+                      ContentTemplate="{DataTemplate local:HomeScreen}" />
+
         <ShellContent Title="Habit Tracker"
-                  ContentTemplate="{DataTemplate local:HabitHomePage}" />
+                      ContentTemplate="{DataTemplate local:HabitHomePage}" />
 
         <ShellContent Title="Mood Tracker"
-                  ContentTemplate="{DataTemplate local:MoodTrackerHomePage}" />
+                      ContentTemplate="{DataTemplate local:MoodTrackerHomePage}" />
 
-        <ShellContent 
-                  Title="New Entry"
-                  ContentTemplate="{DataTemplate local:NewJournalPage}"/>
+        <ShellContent Title="New Entry"
+                      ContentTemplate="{DataTemplate local:NewJournalPage}"/>
 
         <ShellContent Title="Journal"
-                  ContentTemplate="{DataTemplate local:ListViewPage}"/>
+                      ContentTemplate="{DataTemplate local:ListViewPage}"/>
 
         <ShellContent Title="Settings"
-                  ContentTemplate="{DataTemplate local:SettingsPage}"/>
-
+                      ContentTemplate="{DataTemplate local:SettingsPage}"/>
 
     </TabBar>
-
 
 </Shell>
