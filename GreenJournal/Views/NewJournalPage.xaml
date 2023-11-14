@@ -18,14 +18,12 @@
             <DatePicker x:Name="EntryDatePicker"
                         Format="Short"
                         Margin="0,10,0,10"
-                        HorizontalOptions="Center"
-                        Date=""/>
+                        HorizontalOptions="Center"/>
             <Picker></Picker> <!--MoodTracker; Will need further implementation-->
             <Picker></Picker> <!--LocationTracker; Will need further implementation-->
             
             <Editor 
                     Placeholder="Enter text here"
-                    
                     Keyboard="Default"/>
                     <!--Text="{Binding JournalEntry, Mode=TwoWay}"-->
         </FlexLayout>
