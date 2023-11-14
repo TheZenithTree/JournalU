@@ -25,6 +25,7 @@
             <Editor 
                     Placeholder="Enter text here"
                     Keyboard="Default"/>
+                    <!--Text="{Binding JournalEntry, Mode=TwoWay}"-->
         </FlexLayout>
 
     </ContentPage.Content>
