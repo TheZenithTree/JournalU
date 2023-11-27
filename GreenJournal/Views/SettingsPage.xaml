@@ -13,23 +13,30 @@
 
         <TableView Intent="Settings">
             <TableRoot>
-                <TableSection >
+                <TableSection Title="Password">
 
-                    <SwitchCell x:Name="showPasswordCell"
+                    <SwitchCell Id="showPasswordCell"
                                 Text="Enable Passcode"
                                 On="False"
-                                OnColor="Teal"/>
-                                <!--OnChanged="{Binding showPassword}-->
+                                OnColor="Teal"
+                                OnChanged="showPasswordCell_OnChanged"/>
                     
-                    <EntryCell Label="The passcode can be a maximum of 4 digits."
-                               Keyboard="Numeric"/>
-                    <!--IsEnabled="{Binding showPassword}"-->
+                    <EntryCell Id="setPasswordCell"
+                               Label="The passcode can be a maximum of 4 digits."
+                               Keyboard="Numeric"
+                               IsEnabled="{Binding showPasswordValue}"
+                               Text="{Binding currentPassword}"
+                               Completed="setPasswordCell_Completed"/>
+
                  </TableSection>
 
-                <TableSection>
-                    <SwitchCell Text="Enable Reminder"
+                <TableSection Title="Reminders/Notifications">
+                    <SwitchCell x:Name="enableReminderCell"
+                                Id="enableReminderCell"
+                                Text="Enable Reminder"
                                 On="False"
-                                OnColor="Teal"/>
+                                OnColor="Teal"
+                                OnChanged="enableReminderCell_OnChanged"/>
 
                 </TableSection>
             </TableRoot>
