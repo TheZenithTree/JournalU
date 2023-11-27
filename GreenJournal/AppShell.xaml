@@ -3,15 +3,14 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:GreenJournal.Views"
        Title="GreenJournal"
-       x:Class="GreenJournal.AppShell"
-       CurrentItem="{x:Reference EntryPage}">
+       x:Class="GreenJournal.AppShell">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
     
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
-
+    
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -30,22 +29,22 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <TabBar>
-        <ShellContent Title="Habit Tracker"
-                  ContentTemplate="{DataTemplate local:HabitHomePage}" />
+    <TabBar IsVisible="True">
+        <ShellContent Title="Habit Tracker" Route="HabitHomePage"
+                  ContentTemplate="{DataTemplate local:HabitHomePage}" IsVisible="True" />
 
-        <ShellContent Title="Mood Tracker"
-                  ContentTemplate="{DataTemplate local:MoodTrackerHomePage}" />
+        <ShellContent Title="Mood Tracker" Route="MoodTrackerHomePage"
+                  ContentTemplate="{DataTemplate local:MoodTrackerHomePage}" IsVisible="True"/>
 
-        <ShellContent x:Name="EntryPage"
-                  Title="New Entry"
-                  ContentTemplate="{DataTemplate local:NewJournalPage}"/>
+        <ShellContent
+                  Title="New Entry" Route="NewJournalPage"
+                  ContentTemplate="{DataTemplate local:NewJournalPage}" IsVisible="True"/>
 
-        <ShellContent Title="Journal"
-                  ContentTemplate="{DataTemplate local:ListViewPage}"/>
+        <ShellContent Title="Journal" Route="ListViewPage"
+                  ContentTemplate="{DataTemplate local:ListViewPage}" IsVisible="True"/>
 
-        <ShellContent Title="Settings"
-                  ContentTemplate="{DataTemplate local:SettingsPage}"/>
+        <ShellContent Title="Settings" Route="Settings"
+                  ContentTemplate="{DataTemplate local:SettingsPage}" IsVisible="True"/>
 
 
     </TabBar>
