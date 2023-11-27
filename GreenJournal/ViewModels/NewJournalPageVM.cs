@@ -4,6 +4,8 @@ using System.Text;
 using Xamarin.Forms;
 using MvvmHelpers;
 using Xamarin.CommunityToolkit;
+using Xamarin.CommunityToolkit.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GreenJournal.ViewModels
 {
@@ -13,5 +15,11 @@ namespace GreenJournal.ViewModels
             //BindingNameVariable = New Command(methodName)
 
         }
-    }
+
+        /*public Date DateChanged()
+        {
+
+        }
+        */
+    }   
 }

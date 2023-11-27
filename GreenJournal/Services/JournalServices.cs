@@ -34,7 +34,7 @@ namespace GreenJournal.Services
             await Init();
             _ = new Entry
             {
-                Time = DateTime.Now,
+                Time = DateTime.Today,
                 Content = content
 
             };
@@ -63,6 +63,14 @@ namespace GreenJournal.Services
             await Init();
 
             var entry = await db.Table<Entry>().FirstOrDefaultAsync(e=> e.ID == id);
+        }
+
+        public static async Task EditEntry(int id)
+        {
+            await Init();
+            await GetEntry(id);
+            
+            
         }
     }
 }

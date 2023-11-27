@@ -16,12 +16,12 @@
                    HorizontalTextAlignment="Start"
                    FontSize="Medium"/>
             <DatePicker x:Name="EntryDatePicker"
-                        Format="Short"
+                        Format="MMMM d, yyyy"
                         Margin="0,10,0,10"
-                        HorizontalOptions="Center"
-                        Date=""/>
-            <Picker></Picker> <!--MoodTracker; Will need further implementation-->
-            <Picker></Picker> <!--LocationTracker; Will need further implementation-->
+                        HorizontalOptions="Center"/>
+            <!--MoodTracker; Will need further implementation 
+                         DateSelected="{Binding db.AddEntry}"-->
+            <!--LocationTracker; Will need further implementation-->
             
             <Editor 
                     Placeholder="Enter text here"

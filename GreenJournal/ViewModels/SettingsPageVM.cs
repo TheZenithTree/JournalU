@@ -12,6 +12,15 @@ namespace GreenJournal.ViewModels
             //BindingNameVariable = New Command(methodName)
 
         }
-        
+        /*public bool showPassword(object sender, EventArgs e)
+        {
+            if (sender == null) 
+            { return  false; }
+
+            if (showPasswordCell.GetValue(showPassword) == false)
+                { return false; }
+
+            return ;
+        }*/
     }
 }

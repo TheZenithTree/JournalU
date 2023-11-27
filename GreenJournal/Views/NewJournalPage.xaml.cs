@@ -1,4 +1,5 @@
 ﻿using GreenJournal.ViewModels;
+using GreenJournal.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +18,8 @@ namespace GreenJournal.Views
         public NewJournalPage()
         {
             InitializeComponent();
-            BindingContext = new NewJournalPageVM();
-            
         }
+
+        
     }
 }
