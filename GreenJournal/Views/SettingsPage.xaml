@@ -1,42 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             
+             xmlns:local="clr-namespace:EventToCommandBehavior" xmlns:local1="http://xamarin.com/schemas/2020/toolkit"
              x:Class="GreenJournal.Views.SettingsPage"
              Title="Settings">
     <!--:DataType="viewmodels:NewJournalPageVM" xmlns:viewmodels="clr-namespace:GreenJournal.ViewModels"-->
     <!--<ContentPage.BindingContext>-->
     <!--<viewmodels:NewJournalPageVM/> -->
     <!--</ContentPage.BindingContext>-->
-    
+
     <ContentPage.Content>
 
         <TableView Intent="Settings">
             <TableRoot>
                 <TableSection Title="Password">
 
-                    <SwitchCell Id="showPasswordCell"
+                    <!--<SwitchCell x:Name="showPasswordCell"
                                 Text="Enable Passcode"
                                 On="False"
                                 OnColor="Teal"
-                                OnChanged="showPasswordCell_OnChanged"/>
-                    
-                    <EntryCell Id="setPasswordCell"
+                                OnChanged="ShowPasswordCell_OnChanged"/>-->
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Enable Passcode"/>
+                            <Switch x:Name="showPasswordCell" IsToggled="{Binding showCurrentPasswordValue}"
+                                    HorizontalOptions="End">
+                                <Switch.Behaviors>
+                                    <local1:EventToCommandBehavior EventName="PasswordToggled" 
+                                                                   Command="{Binding ShowPasswordCommand}"/>
+=                               </Switch.Behaviors>
+                                
+                            </Switch>
+                        </StackLayout>
+                        
+                    </ViewCell>
+
+                        <!--<EntryCell x:Name="setPasswordCell"
                                Label="The passcode can be a maximum of 4 digits."
                                Keyboard="Numeric"
                                IsEnabled="{Binding showPasswordValue}"
                                Text="{Binding currentPassword}"
-                               Completed="setPasswordCell_Completed"/>
+                               Completed="EntryCell_Completed"/>-->
+                    
+                    
 
-                 </TableSection>
+                </TableSection>
 
                 <TableSection Title="Reminders/Notifications">
                     <SwitchCell x:Name="enableReminderCell"
-                                Id="enableReminderCell"
                                 Text="Enable Reminder"
                                 On="False"
                                 OnColor="Teal"
-                                OnChanged="enableReminderCell_OnChanged"/>
+                                OnChanged="EnableReminderCell_OnChanged"/>
 
                 </TableSection>
             </TableRoot>

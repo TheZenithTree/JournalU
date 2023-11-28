@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/GreenJournal/ViewModels/SettingsPageVM.cs
+/.gitignore

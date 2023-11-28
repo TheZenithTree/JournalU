@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,18 +13,41 @@ namespace GreenJournal.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
-       public SettingsPage()
+        public SettingsPage()
         {
             InitializeComponent();
-            //BindingContext = new SettingsPageVM();
+
+            ShowPasswordCommand = new Command(OnToggleShowPass);
+
+            
+
+            BindingContext = this;
+
 
         }
 
+        public ICommand ShowPasswordCommand { get; }
+
         bool showPasswordValue = false;
-        int currentPassword = 0000;
+        int? currentPassword = null;
         bool enableReminder = false;
 
-        public int CurrentPassword
+        public void OnToggleShowPass()
+        {
+            if (showPasswordCell.IsEnabled == false)
+            {
+                showPasswordValue = false;
+                currentPassword = null;
+            }
+            else
+            {
+                showPasswordValue = true;
+                currentPassword = null;
+            }
+
+        }
+        
+        public int? CurrentPassword
         {
             get => currentPassword;
 
@@ -36,7 +60,7 @@ namespace GreenJournal.Views
             }
         }
 
-        private void showPasswordCell_OnChanged(object sender, ToggledEventArgs e)
+        private void ShowPasswordCell_OnChanged(object sender, ToggledEventArgs e)
         {
             if (showPasswordCell.IsEnabled == true)
             {
@@ -48,9 +72,9 @@ namespace GreenJournal.Views
         }
 
 
-        private void enableReminderCell_OnChanged(object sender, ToggledEventArgs e)
+        private void EnableReminderCell_OnChanged(object sender, ToggledEventArgs e)
         {
-            if (e.Value == true) 
+            if (enableReminderCell.IsEnabled == true)
             {
                 enableReminder = true;
             }
@@ -58,9 +82,10 @@ namespace GreenJournal.Views
                 enableReminder = false;
         }
 
-        private void setPasswordCell_Completed(object sender, EventArgs e)
+        private void SetPasswordCell_Completed(object sender, EventArgs e)
         {
-            currentPassword = 
+            currentPassword = int.Parse(setPasswordCell.Text);
         }
+
     }
 }
