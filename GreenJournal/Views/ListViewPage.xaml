@@ -6,12 +6,16 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Journals Galore Love"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
 
             <!-- ListView -->
             <ListView x:Name="journalListView">
+                <!--This is shown when there is no item-->
+                <ListView.EmptyView>
+                    <Label Text="Journals Galore Love"
+                            VerticalOptions="CenterAndExpand" 
+                            HorizontalOptions="CenterAndExpand" />
+                </ListView.EmptyView>
+                <!--This is a list of diary-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <!-- design of one cell -->
