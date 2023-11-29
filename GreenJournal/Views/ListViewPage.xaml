@@ -8,13 +8,13 @@
         <StackLayout>
 
             <!-- ListView -->
-            <ListView x:Name="journalListView">
-                <!--This is shown when there is no item-->
-                <ListView.EmptyView>
-                    <Label Text="Journals Galore Love"
-                            VerticalOptions="CenterAndExpand" 
-                            HorizontalOptions="CenterAndExpand" />
-                </ListView.EmptyView>
+            <ListView x:Name="journalListView" ItemsSource="{Binding Entries}">
+                <!--this is shown when there is no item-->
+                <!--<listview.emptyview>
+                    <label text="journals galore love"
+                            verticaloptions="centerandexpand" 
+                            horizontaloptions="centerandexpand" />
+                </listview.emptyview>-->
                 <!--This is a list of diary-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -22,9 +22,9 @@
                         <ViewCell>
                             <StackLayout Orientation="Vertical">
                                 <!-- date -->
-                                <Label Text="{Binding Date}" />
+                                <Label Text="{Binding Time}" />
                                 <!-- text -->
-                                <Label Text="{Binding Text}" />
+                                <Label Text="{Binding Content}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
