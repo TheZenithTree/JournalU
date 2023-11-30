@@ -1,5 +1,6 @@
 ﻿using GreenJournal.Services;
 using MvvmHelpers;
+using MvvmHelpers.Commands;
 using System;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -8,8 +9,13 @@ namespace GreenJournal.ViewModels
 {
     public class NewJournalPageVM : BaseViewModel
     {
+        
 
-        public AsyncCommand SaveCommand { get; }
+        public Command SaveCommand { get
+            {
+                return new Command(async () => await SaveNew());
+            }
+        }
         string pagecontent;
         DateTime entrydate = DateTime.Today;
 
@@ -20,12 +26,15 @@ namespace GreenJournal.ViewModels
         {
             //BindingNameVariable = New Command(methodName)
 
-            var SaveCommand = new AsyncCommand(SaveNew);
+            var SaveCommand = new Command(async () => await SaveNew());
         }
 
-        async Task SaveNew()
+        public async Task SaveNew()
         {
-            if (string.IsNullOrWhiteSpace(PageContent)) return;
+            if (string.IsNullOrWhiteSpace(PageContent))
+            {
+                return;
+            };
 
             //Task<int> saved = new Task<int>(() =>
             //{
@@ -41,17 +50,7 @@ namespace GreenJournal.ViewModels
 
         }
 
-        public DateTime CurrentDate
-        {
-            get => CurrentDate;
-            set
-            {
-                if (value == CurrentDate)
-                    return;
-                CurrentDate = value;
-                OnPropertyChanged(nameof(CurrentDate));
-            }
-        }
+
 
     }   
 }

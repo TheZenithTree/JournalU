@@ -18,8 +18,22 @@ namespace GreenJournal.ViewModels
     {
         MvvmHelpers.ObservableRangeCollection<Entry> entries;
 
-        public MvvmHelpers.ObservableRangeCollection<Entry> Entries { get => entries; set => SetProperty(ref entries, value); }
-        public AsyncCommand SelectCommand { get; }
+        public MvvmHelpers.ObservableRangeCollection<Entry> Entries { get => entries;
+            set
+            {
+                JournalServices.GetAllEntry();
+                if (entries != value) { entries = value; }
+                OnPropertyChanged();
+
+            }
+        }
+        public Command SelectCommand
+        {
+            get
+            {
+                return new Command(async () => await SelectedAsync());
+            }
+        }
         public ViewEntryVM selectedEntry;
         public ViewEntryVM SelectedEntry {  get => selectedEntry; set => SetProperty(ref selectedEntry, value); }
 
@@ -27,10 +41,11 @@ namespace GreenJournal.ViewModels
         {
             // コンストラクタでEntriesを初期化など
             Entries = new MvvmHelpers.ObservableRangeCollection<Entry>();
-            SelectCommand = new AsyncCommand(SelectedAsync);
+            var SelectCommand = new Command(async () => await SelectedAsync());
+
 
             //データベースからデータを読み込むなど
-           var databaseEntries = GetEntriesFromDatabase();
+            var databaseEntries = GetEntriesFromDatabase();
             foreach (var entry in databaseEntries)
             {
                 Entries.Add(entry);
@@ -45,18 +60,18 @@ namespace GreenJournal.ViewModels
             SelectedEntry = null;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged
-        {
-            add
-            {
-                ((INotifyPropertyChanged)Entries).PropertyChanged += value;
-            }
+        //public event PropertyChangedEventHandler PropertyChanged
+        //{
+        //    add
+        //    {
+        //        ((INotifyPropertyChanged)Entries).PropertyChanged += value;
+        //    }
 
-            remove
-            {
-                ((INotifyPropertyChanged)Entries).PropertyChanged -= value;
-            }
-        }
+        //    remove
+        //    {
+        //        ((INotifyPropertyChanged)Entries).PropertyChanged -= value;
+        //    }
+        //}
 
 
 

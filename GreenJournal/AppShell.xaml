@@ -37,8 +37,6 @@
         <ShellContent Title="Journal" Route="ListViewPage"
                   ContentTemplate="{DataTemplate local:ListViewPage}" IsVisible="True"/>
 
-        <ShellContent Title="Settings" Route="Settings"
-                  ContentTemplate="{DataTemplate local:SettingsPage}" IsVisible="True"/>
 
     </TabBar>
 
