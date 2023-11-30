@@ -1,12 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GreenJournal.Views.ListViewPage">
+             x:Class="GreenJournal.Views.ListViewPage"
+             Title= "List View">
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Journals Galore Love"
-            VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="CenterAndExpand" />
+
+            <!-- ListView -->
+            <ListView x:Name="journalListView" ItemsSource="{Binding Entries}">
+                <!--this is shown when there is no item-->
+                <!--<listview.emptyview>
+                    <label text="journals galore love"
+                            verticaloptions="centerandexpand" 
+                            horizontaloptions="centerandexpand" />
+                </listview.emptyview>-->
+                <!--This is a list of diary-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- design of one cell -->
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <!-- date -->
+                                <Label Text="{Binding Time}" />
+                                <!-- text -->
+                                <Label Text="{Binding Content}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
