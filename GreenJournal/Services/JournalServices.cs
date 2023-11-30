@@ -21,7 +21,7 @@ namespace GreenJournal.Services
                 return;
 
             //Create Database
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyJournal.db");
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "JournalU.db");
 
             db = new SQLiteAsyncConnection(databasePath);
 
@@ -32,14 +32,14 @@ namespace GreenJournal.Services
         public static async Task AddEntry(string content)
         {
             await Init();
-            _ = new Entry
+            var entry = new Entry
             {
-                Time = DateTime.Today,
+                EntryDateTime = DateTime.Today,
                 Content = content
 
             };
 
-            //var ID = await db.InsertAsync(entry);
+            var ID = await db.InsertAsync(entry);
 
         }
 
@@ -69,8 +69,18 @@ namespace GreenJournal.Services
         {
             await Init();
             await GetEntry(id);
-            
-            
+        }
+
+        public Task SaveEntryAsync(Entry entry)
+        {
+            if (entry.ID != 0)
+            {
+                return db.UpdateAsync(entry);
+            }
+            else
+            {
+                return db.InsertAsync(entry);
+            }
         }
     }
 }

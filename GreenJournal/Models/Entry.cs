@@ -9,7 +9,7 @@ namespace GreenJournal.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime EntryDateTime { get; set; }
         public string Content { get; set; }
 
     }

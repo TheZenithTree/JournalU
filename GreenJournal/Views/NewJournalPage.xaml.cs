@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Windows.Input;
 
 namespace GreenJournal.Views
 {
@@ -19,7 +20,5 @@ namespace GreenJournal.Views
         {
             InitializeComponent();
         }
-
-        
     }
 }
