@@ -17,7 +17,7 @@ namespace GreenJournal.Services
             //Create Database and Tables
 
             //If database has not been created, don't run it again
-            if (db == null)
+            if (db != null)
                 return;
 
             //Create Database
@@ -29,23 +29,25 @@ namespace GreenJournal.Services
             await db.CreateTableAsync<Entry>();
         }
 
-        public static async Task AddEntry(string content)
+        public static async Task AddEntry(string content, DateTime date)
         {
             await Init();
             var entry = new Entry
             {
-                EntryDateTime = DateTime.Today,
+                EntryDateTime = date,
                 Content = content
 
             };
 
-            var ID = await db.InsertAsync(entry);
+            await db.InsertAsync(entry);
 
         }
 
-        public static async Task DeleteEntry(int id)
+        public static async Task DeleteEntry(int? id)
         {
             await Init();
+
+            if (id == null) return;
 
             await db.DeleteAsync<Entry>(id);
         }
@@ -54,8 +56,8 @@ namespace GreenJournal.Services
         {
             await Init();
 
-            var entry = await db.Table<Entry>().ToListAsync();
-            return entry;
+            var entries = await db.Table<Entry>().ToListAsync();
+            return entries;
         }
 
         public static async Task GetEntry(int id)
@@ -65,22 +67,13 @@ namespace GreenJournal.Services
             var entry = await db.Table<Entry>().FirstOrDefaultAsync(e=> e.ID == id);
         }
 
-        public static async Task EditEntry(int id)
+
+        public static async Task SaveEntryAsync(Entry entry)
         {
             await Init();
-            await GetEntry(id);
-        }
 
-        public Task SaveEntryAsync(Entry entry)
-        {
-            if (entry.ID != 0)
-            {
-                return db.UpdateAsync(entry);
-            }
-            else
-            {
-                return db.InsertAsync(entry);
-            }
+            await db.UpdateAsync(entry);
+            
         }
     }
 }

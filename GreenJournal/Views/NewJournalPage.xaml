@@ -5,54 +5,47 @@
              xmlns:viewmodels="clr-namespace:GreenJournal.ViewModels"
              x:Class="GreenJournal.Views.NewJournalPage"
              Title= "Create a New Entry"
-             x:DataType="viewmodels:NewJournalPageVM"
-             x:Name="NewJournalPage">
+             x:DataType="viewmodels:NewJournalPageVM">
     <ContentPage.BindingContext>
         <viewmodels:NewJournalPageVM/>
     </ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <xct:ItemSelectedEventArgsConverter x:Key="DateTimeOffsetConverter" />
-        </ResourceDictionary>
         
-    </ContentPage.Resources>
-
     <ContentPage.ToolbarItems>
+        
         <ToolbarItem Text="Save"
-                     Command="{Binding SaveCommand}"
-                     CommandParameter="Binding"/>
-
+                     Command="{Binding SaveCommand}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <FlexLayout Direction="Column">
+        <StackLayout Orientation="Vertical">
             <!--Date-->
-            <Label Text="Date: "
-                   HorizontalTextAlignment="Start"
-                   FontSize="Medium"/>
-            <DatePicker x:Name="EntryDatePicker"
-                        Format="MMMM d, yyyy"
-                        Margin="0,10,0,10"
-                        HorizontalOptions="Center"
-                        Date="{Binding Source={Reference NewJournalPage},
-                               Path=BindingContext.CurrentDate, Mode=TwoWay}">
-            </DatePicker>
-
-            
-            <!--MoodTracker; Will need further implementation 
-                         DateSelected="{Binding db.AddEntry}"-->
-            <!--LocationTracker; Will need further implementation-->
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Date: "
+                       HorizontalTextAlignment="Start"
+                       FontSize="Large"
+                       Margin="10,20,0,0"/>
+                <DatePicker x:Name="EntryDatePicker"
+                            FontSize="Large"
+                            Format="MMMM d, yyyy"
+                            Margin="0,10,0,0"
+                            HorizontalOptions="Center"
+                            Date="{Binding EntryDate, Mode=TwoWay}">
+                    
+                </DatePicker>
+                <!--Date="{Binding CurrentDate, Mode=TwoWay}"-->
+            </StackLayout>
             
             <Editor 
                     Placeholder="Enter text here"
                     Keyboard="Default"
+                    AutoSize="TextChanges"
+                    Margin="10,0,10,10"
                     Text="{Binding PageContent, Mode=TwoWay}"
                     VerticalOptions="FillAndExpand"
-                    AutoSize="TextChanges"
                     />
-                    <!--Text="{Binding JournalEntry, Mode=TwoWay}"-->
-        </FlexLayout>
+            <!--"-->
+        </StackLayout>
 
     </ContentPage.Content>
 </ContentPage>

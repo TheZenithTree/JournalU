@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using GreenJournal.Services;
 using MvvmHelpers;
-using Xamarin.CommunityToolkit;
-using Xamarin.CommunityToolkit.ObjectModel;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Input;
-using GreenJournal.Models;
+using System;
 using System.Threading.Tasks;
-using GreenJournal.Services;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace GreenJournal.ViewModels
 {
@@ -17,15 +10,14 @@ namespace GreenJournal.ViewModels
     {
 
         public AsyncCommand SaveCommand { get; }
-        public AsyncCommand DeleteCommand { get; }
-
         string pagecontent;
-        DateTime entrydate;
+        DateTime entrydate = DateTime.Today;
 
         public string PageContent {  get => pagecontent; set => SetProperty(ref pagecontent, value); }
         public DateTime EntryDate { get => entrydate; set => SetProperty(ref entrydate, value); }
 
-        public NewJournalPageVM() {
+        public NewJournalPageVM()
+        {
             //BindingNameVariable = New Command(methodName)
 
             var SaveCommand = new AsyncCommand(SaveNew);
@@ -33,14 +25,11 @@ namespace GreenJournal.ViewModels
 
         async Task SaveNew()
         {
-            if (IsBusy) return;
-            IsBusy = true;
-
-            if (string.IsNullOrWhiteSpace(pagecontent)) return;
+            if (string.IsNullOrWhiteSpace(PageContent)) return;
 
             //Task<int> saved = new Task<int>(() =>
             //{
-                
+
 
             //    return JournalServices.SaveEntryAsync((PageContent, EntryDate));
             //});
@@ -48,14 +37,10 @@ namespace GreenJournal.ViewModels
             //saved.Start();
             //await saved;
 
-            await JournalServices.AddEntry(pagecontent);
+            await JournalServices.AddEntry(PageContent, EntryDate);
 
         }
-        
-        
-        
-        
-        
+
         public DateTime CurrentDate
         {
             get => CurrentDate;
@@ -68,9 +53,5 @@ namespace GreenJournal.ViewModels
             }
         }
 
-        //void DateChanged()
-        //{
-        //    CurrentDate = ;
-        //}
     }   
 }

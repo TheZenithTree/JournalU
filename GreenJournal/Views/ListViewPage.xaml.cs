@@ -12,8 +12,6 @@ namespace GreenJournal.Views
         {
             InitializeComponent();
 
-            BindingContext = new JournalViewModel();
-
             //// ********This is a test data for debugging list view********
             //var journalEntries = new ObservableCollection<Models.Entry>
             //{

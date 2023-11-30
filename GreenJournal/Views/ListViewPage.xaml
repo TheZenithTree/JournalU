@@ -2,13 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GreenJournal.Views.ListViewPage"
-             Title= "List View">
+             xmlns:viewmodels="clr-namespace:GreenJournal.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             x:DataType="viewmodels:ListViewVM"
+             Title= "List View"
+             >
+
+    <ContentPage.BindingContext>
+        <viewmodels:ListViewVM/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout>
 
             <!-- ListView -->
-            <ListView x:Name="journalListView" ItemsSource="{Binding Entries}">
+            <ListView x:Name="journalListView" ItemsSource="{Binding Entries}"
+                      SelectedItem="{Binding SelectedEntry, Mode=TwoWay}"
+                      SelectionMode="Single"
+                      >
+                <ListView.Behaviors>
+                    <xct:EventToCommandBehavior
+                Command="{Binding SelectCommand}"
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                EventName="ItemSelected" />
+                </ListView.Behaviors>
                 <!--this is shown when there is no item-->
                 <!--<listview.emptyview>
                     <label text="journals galore love"
@@ -20,9 +43,9 @@
                     <DataTemplate>
                         <!-- design of one cell -->
                         <ViewCell>
-                            <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
                                 <!-- date -->
-                                <Label Text="{Binding Time}" />
+                                <Label Text="{Binding EntryTime}" />
                                 <!-- text -->
                                 <Label Text="{Binding Content}" />
                             </StackLayout>

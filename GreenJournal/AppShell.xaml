@@ -30,12 +30,6 @@
     </Shell.Resources>
 
     <TabBar IsVisible="True">
-        <ShellContent Title="Habit Tracker" Route="HabitHomePage"
-                  ContentTemplate="{DataTemplate local:HabitHomePage}" IsVisible="True" />
-
-        <ShellContent Title="Mood Tracker" Route="MoodTrackerHomePage"
-                  ContentTemplate="{DataTemplate local:MoodTrackerHomePage}" IsVisible="True"/>
-
         <ShellContent
                   Title="New Entry" Route="NewJournalPage"
                   ContentTemplate="{DataTemplate local:NewJournalPage}" IsVisible="True"/>
@@ -45,7 +39,6 @@
 
         <ShellContent Title="Settings" Route="Settings"
                   ContentTemplate="{DataTemplate local:SettingsPage}" IsVisible="True"/>
-
 
     </TabBar>
 

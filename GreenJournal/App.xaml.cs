@@ -8,17 +8,17 @@ namespace GreenJournal
 {
     public partial class App : Application
     {
-        private static JournalServices database;
-        private static JournalServices Database
-        {
-            get
-            {
-                if (database == null)
-                    database = new JournalServices();
+        //private static JournalServices database;
+        //private static JournalServices Database
+        //{
+        //    get
+        //    {
+        //        if (database == null)
+        //            database = new JournalServices();
 
-                return database;
-            }
-        }
+        //        return database;
+        //    }
+        //}
 
 
         public App()

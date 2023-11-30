@@ -1,27 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using GreenJournal.Models;
+using GreenJournal.Services;
+using GreenJournal.Views;
+using MvvmHelpers;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using GreenJournal.Models;
+using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
+using Entry = GreenJournal.Models.Entry;
 
 namespace GreenJournal.ViewModels
 {
-    public class JournalViewModel : INotifyPropertyChanged
-    {
-        public ObservableCollection<Entry> Entries { get; set; }
+    public class ListViewVM : BaseViewModel
 
-        public JournalViewModel()
+    {
+        MvvmHelpers.ObservableRangeCollection<Entry> entries;
+
+        public MvvmHelpers.ObservableRangeCollection<Entry> Entries { get => entries; set => SetProperty(ref entries, value); }
+        public AsyncCommand SelectCommand { get; }
+        public ViewEntryVM selectedEntry;
+        public ViewEntryVM SelectedEntry {  get => selectedEntry; set => SetProperty(ref selectedEntry, value); }
+
+        public ListViewVM()
         {
             // コンストラクタでEntriesを初期化など
-            Entries = new ObservableCollection<Entry>();
+            Entries = new MvvmHelpers.ObservableRangeCollection<Entry>();
+            SelectCommand = new AsyncCommand(SelectedAsync);
 
-            // データベースからデータを読み込むなど
-            var databaseEntries = GetEntriesFromDatabase();
+            //データベースからデータを読み込むなど
+           var databaseEntries = GetEntriesFromDatabase();
             foreach (var entry in databaseEntries)
             {
                 Entries.Add(entry);
             }
+        }
+
+
+        async Task SelectedAsync()
+        {
+            if (SelectedEntry == null) return;
+            await Shell.Current.Navigation.PushAsync(new ViewEntry(SelectedEntry));
+            SelectedEntry = null;
         }
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -37,15 +58,17 @@ namespace GreenJournal.ViewModels
             }
         }
 
+
+
         private List<Entry> GetEntriesFromDatabase()
         {
             // データベースからデータを取得する処理など
             // ここでは仮のデータを返す例
             return new List<Entry>
             {
-                new Entry { ID = 1, Time = DateTime.Now, Content = "I love driving." },
-                new Entry { ID = 2, Time = DateTime.Now.AddDays(-1), Content = "I went to Dallas." },           
-                new Entry { ID = 2, Time = DateTime.Now.AddDays(-3), Content = "It was a nice day!" }
+                new Entry {EntryDateTime = DateTime.Now, Content = "I love driving." },
+                new Entry {EntryDateTime = DateTime.Now.AddDays(-1), Content = "I went to Dallas." },
+                new Entry {EntryDateTime = DateTime.Now.AddDays(-3), Content = "It was a nice day!" }
             };
         }
     }
